@@ -1,0 +1,12 @@
+{
+    "id": "souls",
+    "name": "Souls",
+    "description": "An MMI (mind/matter interaction) based friend and talk-topic finder.",
+    "keywords": [
+        "souls", "mmi", "quantum", "physics", "mind", "matter", "interaction", "friend", "match", "topic", "attraction"
+    ],
+    "version": "0.0.0",
+    "humhub": {
+        "minVersion": "1.7.2"
+    }
+}
