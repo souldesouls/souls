@@ -13,15 +13,15 @@ use yii\helpers\Url;
 
 <div class="modal-body">
     <p class="lead">
-        <?= Yii::t('SoulsModule.views.matcher', 'What\'s the reason you are looking for people?<br>To chat idly with? A potential boy/girlfriend? Marriage minded?<br>(Anything goes here)') ?>
+        <?= Yii::t('SoulsModule.views.matcher', 'What\'s the reason you are looking?<br>To find someone chat idly with? A potential boy/girlfriend? Like-minded people to banter about a common topic? Marriage minded?<br>(Anything goes here:)') ?>
     </p>
 
     <p class="lead">
-        <?= Yii::t('SoulsModule.views.matcher', 'Give some thought to that reason, and try and imagine what kind of person they may be.') ?>
+        <?= Yii::t('SoulsModule.views.matcher', 'Give some thought to that reason, and try and imagine what kind of person/s they may be.') ?>
     </p>
 
     <p class="lead">    
-        <?= Yii::t('SoulsModule.views.matcher', 'Focus those thoughts as you press the MATCH! button. The system will measure that intent and do some searching to try and match you with another Souls member.') ?>
+        <?= Yii::t('SoulsModule.views.matcher', 'Focus those thoughts into your intent as you press the button below. The system will measure that intent and based on that will try to match you with another Souls member.') ?>
     </p>
 
     <center>
