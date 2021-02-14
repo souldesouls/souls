@@ -1,6 +1,6 @@
 <?php
 
-use one\souls\modules\assets\Assets;
+use energy\souls\modules\assets\Assets;
 use humhub\widgets\Button;
 
 // Register our module aossets, this could also be done within the controller

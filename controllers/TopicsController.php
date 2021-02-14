@@ -1,6 +1,6 @@
 <?php
 
-namespace one\souls\modules\controllers;
+namespace energy\souls\modules\controllers;
 
 use humhub\components\Controller;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace one\souls\modules\assets;
+namespace energy\souls\modules\assets;
 
 use yii\web\AssetBundle;
 

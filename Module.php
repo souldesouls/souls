@@ -1,6 +1,6 @@
 <?php
 
-namespace one\souls\modules;
+namespace energy\souls\modules;
 
 use yii\helpers\Url;
 

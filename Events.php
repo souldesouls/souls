@@ -1,6 +1,6 @@
 <?php
 
-namespace one\souls\modules;
+namespace energy\souls\modules;
 
 use humhub\modules\admin\permissions\ManageModules;
 use humhub\modules\admin\widgets\AdminMenu;
