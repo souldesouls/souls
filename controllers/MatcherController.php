@@ -6,7 +6,6 @@ use humhub\components\Controller;
 
 class MatcherController extends Controller
 {
-
     /**
      * Renders the index view for the module
      *
