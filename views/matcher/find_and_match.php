@@ -27,6 +27,13 @@ include("protected/modules/souls/meterfeeder/MeterFeeder.php");
             <strong><?php echo number_format (($matchp*100), 2); ?>%</strong>
             
             match.
+
+            <right>
+                <?php $url = Url::to(['/souls/matcher/find-and-match']); ?>
+                <a href="<?= $url; ?>" data-target="#globalModal">
+                    <i class="fa fa-refresh"></i>
+                </a>
+            </right>
         </p>
 
         <p class="lead">
