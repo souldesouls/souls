@@ -1,10 +1,12 @@
 <?php
 
+include("protected/humhub/modules/user/models/forms/random-username-generator/RandomUsernameGenerator.php");
+
 if (!function_exists('meterfeeder')) {
     $num_get_intent_calls = 0;
     function meterfeeder_get_intent() {
         $med_serials = array(
-            "QWR4A003"
+            "QWR4E004"
         );
         global $num_get_intent_calls;
 
@@ -65,12 +67,50 @@ if (!function_exists('meterfeeder')) {
             $b2 = $b2 + pow($b, 2);
         }
         
-        $corr= $axb / sqrt($a2*$b2);
+        $corr = $axb / sqrt($a2*$b2);
         
         return $corr;
     }
 
+    //
+    // TESTING
+    //
+
+    // Get random intent
     // print_r(meterfeeder_get_intent());
+
+    // Get random intent and match
+    // $redis = new Redis(); 
+    // $redis->connect('127.0.0.1', 6379);
+    // $baselines = $redis->lrange("baselines", 0, -1);
+    // $new_user = generate_random_username();
+    // echo "looking for someone for $new_user\n\n";
+    // $new_intent = meterfeeder_get_intent();
+    // $best_match = "";
+    // $last_match_score = -1;
+    // for ($i = 0; $i < /*count($baselines) - 1*/100; $i++) {
+    //     $json = json_decode($baselines[$i], true);
+    //     if ($json["entropy"] == "") {
+    //         echo $i . " empty entropy\n";
+    //         continue;
+    //     }
+    //     $this_baseline = explode(",", json_decode($baselines[$i], true)["entropy"]);
+    //     $correlation_score = cross_correlation($this_baseline, $new_intent);
+    //     if ($correlation_score >= $last_match_score) {
+    //         $best_match = $json;
+    //         $last_match_score = $correlation_score;
+    //     }
+    // }
+    // print("\nscore:" . $last_match_score . "\n");
+
+    // Insert random users with random names with random intents into redis
+    // for ($i = 0; $i < 100000; $i++) {
+    //     echo $i."\n";
+    //     //$redis->set(generate_random_username(), implode(",", meterfeeder_get_intent())); 
+    //     $json = '{"username":"'.generate_random_username().'", "entropy":['.implode(",", meterfeeder_get_intent()).']}';   
+    //     // echo $json."\n"; 
+    //     $redis->rpush("baselines", $json);
+    // }
 }
 
 ?>
