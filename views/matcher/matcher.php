@@ -18,7 +18,10 @@ use yii\helpers\Url;
                     <?= Yii::t('SoulsModule.base', 'Matching begins with intention.') ?>
                 </p>
 
-                <?= Button::primary(Yii::t('SoulsModule.views.matcher', 'BEGIN'))->link(Url::toRoute(['set-intention'])); ?>
+                <?php $url = Url::to(['/souls/matcher/set-intention']); ?>
+                <a href="<?= $url; ?>" class="btn btn-primary" data-target="#globalModal">
+                    <i class="fa fa-hand-o-right"></i> <?= Yii::t('SoulsModule.views.matcher', 'BEGIN'); ?>
+                </a>
 
             </center>
         </div>

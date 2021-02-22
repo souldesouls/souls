@@ -13,19 +13,46 @@ include("protected/modules/souls/meterfeeder/MeterFeeder.php");
     'animation' => 'fadeIn'
 ]) ?>
 
-<div class="modal-body">
-<?php 
-//print_r(meterfeeder_get_intent());
-$a = meterfeeder_get_intent();
-$b = meterfeeder_get_intent();
-$matchp = cross_correlation($a, $b);
-?>
-FOUND SOMEBODY TO LOVE @ <?php echo ($matchp*100); ?>%
-<!-- 
-    <center>
-        <?= Button::primary(Yii::t('SoulsModule.views.matcher', 'MATCH'))->link(Url::toRoute(['find-and-match'])); ?>
-    </center> -->
+    <div class="modal-body">
 
-</div>
+        <?php 
+        $a = meterfeeder_get_intent();
+        $b = meterfeeder_get_intent();
+        $matchp = cross_correlation($a, $b);
+        ?>
+
+        <p class="lead">
+            <?= Yii::t('SoulsModule.views.matcher', 'A soul was found with a ') ?>
+        
+            <strong><?php echo number_format (($matchp*100), 2); ?>%</strong>
+            
+            match.
+        </p>
+
+        <p class="lead">
+            <?= Yii::t('SoulsModule.views.matcher', 'Start chatting around a topic suggestion that\'s based on both your measured intents.') ?>
+        </p>
+
+        <center>
+            <?php $url = Url::to(['/souls/matcher/topic-chat']); ?>
+            <a href="<?= $url; ?>" class="btn btn-primary" data-target="#globalModal">
+                <i class="fa fa-line-chart"></i> <?= Yii::t('SoulsModule.views.matcher', 'TOPIC CHAT'); ?>
+            </a>
+        </center>
+
+        <br>
+
+        <p class="lead">
+            <?= Yii::t('SoulsModule.views.matcher', 'Or just start chatting!') ?>
+        </p>
+
+        <center>
+            <?php $url = Url::to(['/souls/matcher/free-chat']); ?>
+            <a href="<?= $url; ?>" class="btn btn-primary" data-target="#globalModal">
+                <i class="fa fa-random"></i> <?= Yii::t('SoulsModule.views.matcher', 'FREE CHAT'); ?>
+            </a>
+        </center>
+
+    </div>
 
 <?php \humhub\widgets\ModalDialog::end(); ?>
