@@ -72,6 +72,28 @@ if (!function_exists('meterfeeder')) {
         return $corr;
     }
 
+    function find_closest_intent($your_intent) {
+        // Get random intent and match
+        $redis = new Redis(); 
+        $redis->connect('127.0.0.1', 6379);
+        $baselines = $redis->lrange("baselines", 0, -1);
+        $best_match = "";
+        $last_match_score = -1;
+        for ($i = 0; $i < count($baselines) - 1; $i++) {
+            $json = json_decode($baselines[$i], true);
+            if ($json["entropy"] == "") {
+                continue;
+            }
+            $this_baseline = $json["entropy"];
+            $correlation_score = cross_correlation($this_baseline, $your_intent);
+            if ($correlation_score >= $last_match_score) {
+                $best_match = $json;
+                $last_match_score = $correlation_score;
+            }
+        }
+        return array($best_match, $last_match_score);
+    }
+
     //
     // TESTING
     //
@@ -104,7 +126,9 @@ if (!function_exists('meterfeeder')) {
     // print("\nscore:" . $last_match_score . "\n");
 
     // Insert random users with random names with random intents into redis
-    // for ($i = 0; $i < 100000; $i++) {
+    // $redis = new Redis(); 
+    // $redis->connect('127.0.0.1', 6379);
+    // for ($i = 0; $i < 1000; $i++) {
     //     echo $i."\n";
     //     //$redis->set(generate_random_username(), implode(",", meterfeeder_get_intent())); 
     //     $json = '{"username":"'.generate_random_username().'", "entropy":['.implode(",", meterfeeder_get_intent()).']}';   

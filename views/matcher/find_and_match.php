@@ -16,18 +16,18 @@ include("protected/modules/souls/meterfeeder/MeterFeeder.php");
     <div class="modal-body">
 
         <?php 
-        $a = meterfeeder_get_intent();
-        $b = meterfeeder_get_intent();
-        $matchp = cross_correlation($a, $b);
+        $you = meterfeeder_get_intent();
+        $other = find_closest_intent($you);
+        $matchp = $other[1];
         ?>
 
         <p class="lead">
-            <?= Yii::t('SoulsModule.views.matcher', 'A soul was found with a ') ?>
+            <?= Yii::t('SoulsModule.views.matcher', 'A ') ?>
         
             <strong><?php echo number_format (($matchp*100), 2); ?>%</strong>
             
-            match.
-
+            <?= Yii::t('SoulsModule.views.matcher', ' match was found. Try again: ') ?>
+            
             <right>
                 <?php $url = Url::to(['/souls/matcher/find-and-match']); ?>
                 <a href="<?= $url; ?>" data-target="#globalModal">
@@ -36,14 +36,63 @@ include("protected/modules/souls/meterfeeder/MeterFeeder.php");
             </right>
         </p>
 
+        <div id="cross_correlation_chart" style="margin: auto;">
+
+                <?php
+                    $dataPoints = array();
+                    $dataPoints2 = array();
+
+                    for ($i = 1; $i <= count($you); $i++) {
+                        $dataPoints[$i-1] = array("x" => $i, "y" => $you[$i-1]);
+                    }
+
+                    for ($i = 1; $i <= count($other[0]["entropy"]); $i++) {
+                        $dataPoints2[$i-1] = array("x" => $i, "y" => $other[0]["entropy"][$i-1]);
+                    }
+                ?>
+
+                <script type="text/javascript">
+
+                    $(function () {
+                        var chart = new CanvasJS.Chart("cross_correlation_chart", {
+                            theme: "light2",
+                            zoomEnabled: false,
+                            animationEnabled: true,
+                            height: 200,
+                            width: 600,
+                            data: [
+                                {
+                                    type: "line",
+                                    dataPoints: <?php echo json_encode($dataPoints, JSON_NUMERIC_CHECK); ?>,
+                                    name: "You",
+                                    showInLegend: true,
+                                },
+                                {
+                                    type: "line",
+                                    dataPoints: <?php echo json_encode($dataPoints2, JSON_NUMERIC_CHECK); ?>,
+                                    name: "Someone",
+                                    showInLegend: true,
+                                },
+                            ]
+                        });
+                        chart.render();
+                    });
+                </script>
+
+        </div>
+        
+        <br><br><br><br><br><br><br><br><br><br><br>
+        <?= Yii::t('SoulsModule.views.matcher', 'Matches can range from -100% to 100% and are based on how similar in shape your two mental intention measurement lines above are.') ?>
+        <br><br>
+
         <p class="lead">
-            <?= Yii::t('SoulsModule.views.matcher', 'Start chatting around a topic suggestion that\'s based on both your measured intents.') ?>
+            <?= Yii::t('SoulsModule.views.matcher', 'Start chatting with a topic suggestion that\'s based on both your measurements.') ?>
         </p>
 
         <center>
             <?php $url = Url::to(['/souls/matcher/topic-chat']); ?>
             <a href="<?= $url; ?>" class="btn btn-primary" data-target="#globalModal">
-                <i class="fa fa-line-chart"></i> <?= Yii::t('SoulsModule.views.matcher', 'TOPIC CHAT'); ?>
+                <i class="fa fa-line-chart"></i> <?= Yii::t('SoulsModule.views.matcher', 'SUGGESTED TOPIC CHAT'); ?>
             </a>
         </center>
 
