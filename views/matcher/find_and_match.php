@@ -21,17 +21,19 @@ include("protected/modules/souls/meterfeeder/MeterFeeder.php");
         $matchp = $other[1];
         ?>
 
-        <p class="lead">            
-            <?= Yii::t('SoulsModule.views.matcher', 'A <strong>{percent}%</strong> match was found.', ['percent' => number_format(($matchp*100), 2)] ) ?>
+        <p class="lead">
+            <?= Yii::t('SoulsModule.views.matcher', 'A ') ?>
+        
+            <strong><?php echo number_format (($matchp*100), 2); ?>%</strong>
             
-            <!-- <?= Yii::t('SoulsModule.views.matcher', 'A <strong>{percent}%</strong> match was found. Try again:', ['percent' => number_format(($matchp*100), 2)] ) ?>
-
+            <?= Yii::t('SoulsModule.views.matcher', ' match was found. Try again: ') ?>
+            
             <right>
                 <?php $url = Url::to(['/souls/matcher/find-and-match']); ?>
                 <a href="<?= $url; ?>" data-target="#globalModal">
                     <i class="fa fa-refresh"></i>
                 </a>
-            </right> -->
+            </right>
         </p>
 
         <div id="cross_correlation_chart" style="margin: auto;">
@@ -83,7 +85,7 @@ include("protected/modules/souls/meterfeeder/MeterFeeder.php");
         <?= Yii::t('SoulsModule.views.matcher', 'Matches can range from -100% to 100% and are based on how similar in shape your two mental intention measurement lines above are.') ?>
         <br><br>
 
-        <!-- <p class="lead">
+        <p class="lead">
             <?= Yii::t('SoulsModule.views.matcher', 'Start chatting with a topic suggestion that\'s based on both your measurements.') ?>
         </p>
 
@@ -98,12 +100,12 @@ include("protected/modules/souls/meterfeeder/MeterFeeder.php");
 
         <p class="lead">
             <?= Yii::t('SoulsModule.views.matcher', 'Or just start chatting!') ?>
-        </p> -->
+        </p>
 
         <center>
             <?php $url = Url::to(['/souls/matcher/free-chat']); ?>
             <a href="<?= $url; ?>" class="btn btn-primary" data-target="#globalModal">
-                <i class="fa fa-random"></i> <?= Yii::t('SoulsModule.views.matcher', 'START CHATTING'); ?>
+                <i class="fa fa-random"></i> <?= Yii::t('SoulsModule.views.matcher', 'FREE CHAT'); ?>
             </a>
         </center>
 
