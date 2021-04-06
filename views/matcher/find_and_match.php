@@ -3,9 +3,13 @@
 use yii\helpers\Html;
 use humhub\widgets\Button;
 use yii\helpers\Url;
+use humhub\modules\mail\models\forms\CreateMessage;
+use yii\widgets\ActiveForm;
+use humhub\widgets\ModalButton;
 
 include("protected/modules/souls/meterfeeder/MeterFeeder.php");
 
+/* @var $model CreateMessage */
 ?>
 
 <?php \humhub\widgets\ModalDialog::begin([
@@ -22,9 +26,9 @@ include("protected/modules/souls/meterfeeder/MeterFeeder.php");
         ?>
 
         <p class="lead">            
-            <?= Yii::t('SoulsModule.views.matcher', 'A <strong>{percent}%</strong> match was found.', ['percent' => number_format(($matchp*100), 2)] ) ?>
+            <?= Yii::t('SoulsModule.views.matcher', 'A <strong>{percent}%</strong> match was found.', ['percent' => number_format(($matchp*100), 2)]) ?>
             
-            <!-- <?= Yii::t('SoulsModule.views.matcher', 'A <strong>{percent}%</strong> match was found. Try again:', ['percent' => number_format(($matchp*100), 2)] ) ?>
+            <!-- <?= Yii::t('SoulsModule.views.matcher', 'A <strong>{percent}%</strong> match was found. Try again:', ['percent' => number_format(($matchp*100), 2)]) ?>
 
             <right>
                 <?php $url = Url::to(['/souls/matcher/find-and-match']); ?>
@@ -100,12 +104,18 @@ include("protected/modules/souls/meterfeeder/MeterFeeder.php");
             <?= Yii::t('SoulsModule.views.matcher', 'Or just start chatting!') ?>
         </p> -->
 
+        <?php
+        $model = new CreateMessage(['recipient' => ["b4d2cb2d-5073-48b4-8a5c-18f2c989ba4d"]]);
+        $form = ActiveForm::begin(['enableClientValidation' => false]);
+        echo $form->field($model, 'title')->hiddenInput(['value'=> Yii::t('SoulsModule.views.matcher', 'You two have a {percent}% match. Happy chatting!', ['percent' => number_format(($matchp*100), 2)])])->label(false);
+        echo $form->field($model, 'message')->hiddenInput(['value'=> Yii::t('SoulsModule.views.matcher', 'Hello, nice to meet you!')])->label(false);
+        ?>
+
         <center>
-            <?php $url = Url::to(['/souls/matcher/free-chat']); ?>
-            <a href="<?= $url; ?>" class="btn btn-primary" data-target="#globalModal">
-                <i class="fa fa-random"></i> <?= Yii::t('SoulsModule.views.matcher', 'START CHATTING'); ?>
-            </a>
+            <?= ModalButton::submitModal("/index.php?r=mail%2Fmail%2Fcreate", Yii::t('SoulsModule.views.matcher', 'START CHATTING'))?>
         </center>
+
+        <?php ActiveForm::end(); ?>
 
     </div>
 
