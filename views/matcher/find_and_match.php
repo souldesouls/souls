@@ -22,14 +22,16 @@ include("protected/modules/souls/meterfeeder/MeterFeeder.php");
         ?>
 
         <p class="lead">            
-            <?= Yii::t('SoulsModule.views.matcher', 'A <strong>{percent}%</strong> match was found. Try again:', ['percent' => number_format(($matchp*100), 2)] ) ?>
+            <?= Yii::t('SoulsModule.views.matcher', 'A <strong>{percent}%</strong> match was found.', ['percent' => number_format(($matchp*100), 2)] ) ?>
+            
+            <!-- <?= Yii::t('SoulsModule.views.matcher', 'A <strong>{percent}%</strong> match was found. Try again:', ['percent' => number_format(($matchp*100), 2)] ) ?>
 
             <right>
                 <?php $url = Url::to(['/souls/matcher/find-and-match']); ?>
                 <a href="<?= $url; ?>" data-target="#globalModal">
                     <i class="fa fa-refresh"></i>
                 </a>
-            </right>
+            </right> -->
         </p>
 
         <div id="cross_correlation_chart" style="margin: auto;">
@@ -81,7 +83,7 @@ include("protected/modules/souls/meterfeeder/MeterFeeder.php");
         <?= Yii::t('SoulsModule.views.matcher', 'The lines show your measured intention alongside the closest matching member. Matches range from -100% to 100% and are based on how similar both of your measurements are.') ?>
         <br><br>
 
-        <p class="lead">
+        <!-- <p class="lead">
             <?= Yii::t('SoulsModule.views.matcher', 'Start chatting with a topic suggestion that\'s based on both your measurements.') ?>
         </p>
 
@@ -96,12 +98,12 @@ include("protected/modules/souls/meterfeeder/MeterFeeder.php");
 
         <p class="lead">
             <?= Yii::t('SoulsModule.views.matcher', 'Or just start chatting!') ?>
-        </p>
+        </p> -->
 
         <center>
             <?php $url = Url::to(['/souls/matcher/free-chat']); ?>
             <a href="<?= $url; ?>" class="btn btn-primary" data-target="#globalModal">
-                <i class="fa fa-random"></i> <?= Yii::t('SoulsModule.views.matcher', 'FREE CHAT'); ?>
+                <i class="fa fa-random"></i> <?= Yii::t('SoulsModule.views.matcher', 'START CHATTING'); ?>
             </a>
         </center>
 
