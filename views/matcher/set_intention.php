@@ -27,7 +27,7 @@ use yii\helpers\Url;
 
         <center>
             <?php $url = Url::to(['/souls/matcher/find-and-match']); ?>
-            <a href="<?= $url; ?>" class="btn btn-primary" data-target="#globalModal">
+            <a href="<?= $url; ?>" class="btn btn-primary" data-target="#globalModal" data-ui-loader>
                 <i class="fa fa-search"></i> <?= Yii::t('SoulsModule.views.matcher', 'FIND A MATCH!'); ?>
             </a>
         </center>
