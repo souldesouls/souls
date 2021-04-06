@@ -21,13 +21,9 @@ include("protected/modules/souls/meterfeeder/MeterFeeder.php");
         $matchp = $other[1];
         ?>
 
-        <p class="lead">
-            <?= Yii::t('SoulsModule.views.matcher', 'A ') ?>
-        
-            <strong><?php echo number_format (($matchp*100), 2); ?>%</strong>
-            
-            <?= Yii::t('SoulsModule.views.matcher', ' match was found. Try again: ') ?>
-            
+        <p class="lead">            
+            <?= Yii::t('SoulsModule.views.matcher', 'A <strong>{percent}%</strong> match was found. Try again:', ['percent' => number_format(($matchp*100), 2)] ) ?>
+
             <right>
                 <?php $url = Url::to(['/souls/matcher/find-and-match']); ?>
                 <a href="<?= $url; ?>" data-target="#globalModal">
