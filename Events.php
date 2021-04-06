@@ -31,13 +31,13 @@ class Events
         ]));
 
         // Topics
-        $topMenuWidget->addEntry(new MenuLink([
-            'label' => Yii::t('SoulsModule.base', 'Topics'),
-            'icon' => 'comments',
-            'url' => ['/souls/topics'],
-            'sortOrder' => 2,
-            'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'souls' && Yii::$app->controller->id == 'topics'),
-        ]));
+        // $topMenuWidget->addEntry(new MenuLink([
+        //     'label' => Yii::t('SoulsModule.base', 'Topics'),
+        //     'icon' => 'comments',
+        //     'url' => ['/souls/topics'],
+        //     'sortOrder' => 2,
+        //     'isActive' => (Yii::$app->controller->module && Yii::$app->controller->module->id == 'souls' && Yii::$app->controller->id == 'topics'),
+        // ]));
     }
 
     /**
