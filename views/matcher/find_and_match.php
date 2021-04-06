@@ -81,8 +81,8 @@ include("protected/modules/souls/meterfeeder/MeterFeeder.php");
 
         </div>
         
-        <br><br><br><br><br><br><br><br><br><br><br>
-        <?= Yii::t('SoulsModule.views.matcher', 'Matches can range from -100% to 100% and are based on how similar in shape your two mental intention measurement lines above are.') ?>
+        <br><br><br><br><br><br><br><br><br><br><br><br>
+        <?= Yii::t('SoulsModule.views.matcher', 'The lines show your measured intention alongside the closest matching member. Matches range from -100% to 100% and are based on how similar both of your measurements are.') ?>
         <br><br>
 
         <p class="lead">
