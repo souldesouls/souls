@@ -4,9 +4,9 @@ include("protected/humhub/modules/user/models/forms/random-username-generator/Ra
 
 if (!function_exists('meterfeeder')) {
     $num_get_intent_calls = 0;
-    function meterfeeder_get_intent() {
+    function meterfeeder_get_intent($type) {
         $med_serials = array(
-            "QWR4E004"
+            "QWR4A013"
         );
         global $num_get_intent_calls;
 
@@ -15,7 +15,14 @@ if (!function_exists('meterfeeder')) {
         }
 
         $cmd_output = array();
-        exec("protected/modules/souls/meterfeeder/meterfeeder " . $med_serials[rand(0, count(array($med_serials)) - 1)] . " 256", $cmd_output, $res);
+        if ($type == "match") {
+            // get entropy from matches redis pool
+            exec("redis-cli -h nashi.fp2.dev lpop sls_entropy_silos_matches | sed 's/\"//g'", $cmd_output, $res);  
+        } else {
+            // get entropy from signups redis pool
+            exec("redis-cli -h nashi.fp2.dev lpop sls_entropy_silos_matches | sed 's/\"//g'", $cmd_output, $res);  
+        }
+        //exec("protected/modules/souls/meterfeeder/meterfeeder " . $med_serials[rand(0, count(array($med_serials)) - 1)] . " 256", $cmd_output, $res);
         
         if ($res == 0) {
             $random_walk_results = random_walk($cmd_output[0]);
@@ -23,7 +30,7 @@ if (!function_exists('meterfeeder')) {
         } else {
             // TODO: a proper backoff algorithm at least...
             $num_get_intent_calls++;
-            return meterfeeder_get_intent();
+            return meterfeeder_get_intent($type);
         }
     }
 

@@ -20,7 +20,7 @@ include("protected/modules/souls/meterfeeder/MeterFeeder.php");
     <div class="modal-body">
 
         <?php 
-        $you = meterfeeder_get_intent();
+        $you = meterfeeder_get_intent("match");
         $other = find_closest_intent($you);
         $matchp = $other[1];
         ?>
