@@ -6,6 +6,7 @@ use yii\helpers\Url;
 use humhub\modules\mail\models\forms\CreateMessage;
 use yii\widgets\ActiveForm;
 use humhub\widgets\ModalButton;
+use humhub\modules\User\models\User;
 
 include("protected/modules/souls/meterfeeder/MeterFeeder.php");
 
@@ -22,10 +23,12 @@ include("protected/modules/souls/meterfeeder/MeterFeeder.php");
         <?php 
         $you = meterfeeder_get_intent("match");
         $other = find_closest_intent($you);
+        $matchUsername = $other[0]['username'];
+        $matchUserGuid = User::findOne(['username' => $matchUsername])->guid;
         $matchp = $other[1];
         ?>
 
-        <p class="lead">            
+        <p class="lead">
             <?= Yii::t('SoulsModule.views.matcher', 'A <strong>{percent}%</strong> match was found.', ['percent' => number_format(($matchp*100), 2)]) ?>
             
             <!-- <?= Yii::t('SoulsModule.views.matcher', 'A <strong>{percent}%</strong> match was found. Try again:', ['percent' => number_format(($matchp*100), 2)]) ?>
@@ -105,8 +108,9 @@ include("protected/modules/souls/meterfeeder/MeterFeeder.php");
         </p> -->
 
         <?php
-        $model = new CreateMessage(['recipient' => ["b4d2cb2d-5073-48b4-8a5c-18f2c989ba4d"]]);
+        $model = new CreateMessage();
         $form = ActiveForm::begin(['enableClientValidation' => false]);
+        echo $form->field($model, 'recipient[]')->hiddenInput(['value' => "$matchUserGuid"])->label(false);
         echo $form->field($model, 'title')->hiddenInput(['value'=> Yii::t('SoulsModule.views.matcher', 'You two have a {percent}% match. Happy chatting!', ['percent' => number_format(($matchp*100), 2)])])->label(false);
         echo $form->field($model, 'message')->hiddenInput(['value'=> Yii::t('SoulsModule.views.matcher', 'Hello, nice to meet you!')])->label(false);
         ?>
