@@ -84,7 +84,7 @@ if (!function_exists('meterfeeder')) {
         // Get random intent and match
         $redis = new Redis(); 
         $redis->connect('127.0.0.1', 6379);
-        $baselines = $redis->lrange("baselines", 0, -1);
+        $baselines = $redis->lrange("sls_baselines", 0, -1);
         $best_match = "";
         $last_match_score = -1;
         for ($i = 0; $i < count($baselines) - 1; $i++) {
@@ -112,7 +112,7 @@ if (!function_exists('meterfeeder')) {
     // Get random intent and match
     // $redis = new Redis(); 
     // $redis->connect('127.0.0.1', 6379);
-    // $baselines = $redis->lrange("baselines", 0, -1);
+    // $baselines = $redis->lrange("sls_baselines", 0, -1);
     // $new_user = generate_random_username();
     // echo "looking for someone for $new_user\n\n";
     // $new_intent = meterfeeder_get_intent();
@@ -141,7 +141,7 @@ if (!function_exists('meterfeeder')) {
     //     //$redis->set(generate_random_username(), implode(",", meterfeeder_get_intent())); 
     //     $json = '{"username":"'.generate_random_username().'", "entropy":['.implode(",", meterfeeder_get_intent()).']}';
     //     // echo $json."\n"; 
-    //     $redis->rpush("baselines", $json);
+    //     $redis->rpush("sls_baselines", $json);
     // }
 }
 
