@@ -87,7 +87,7 @@ if (!function_exists('meterfeeder')) {
         $baselines = $redis->lrange("sls_baselines", 0, -1);
         $best_match = "";
         $last_match_score = -1;
-        for ($i = 0; $i < count($baselines) - 1; $i++) {
+        for ($i = 0; $i < count($baselines); $i++) {
             $json = json_decode($baselines[$i], true);
             if ($json["entropy"] == "") {
                 continue;
@@ -108,6 +108,9 @@ if (!function_exists('meterfeeder')) {
 
     // Get random intent
     // print_r(meterfeeder_get_intent());
+
+    // Get random nearest match
+    // print_r(find_closest_intent(meterfeeder_get_intent()));
 
     // Get random intent and match
     // $redis = new Redis(); 
