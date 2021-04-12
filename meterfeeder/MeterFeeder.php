@@ -4,7 +4,7 @@ include("protected/humhub/modules/user/models/forms/random-username-generator/Ra
 
 if (!function_exists('meterfeeder')) {
     $num_get_intent_calls = 0;
-    function meterfeeder_get_intent($type) {
+    function meterfeeder_get_intent($type = "") {
         $med_serials = array(
             "QWR4A013"
         );
@@ -18,11 +18,12 @@ if (!function_exists('meterfeeder')) {
         if ($type == "match") {
             // get entropy from matches redis pool
             exec("redis-cli -h nashi.fp2.dev lpop sls_entropy_silos_matches | sed 's/\"//g'", $cmd_output, $res);  
-        } else {
+        } else if ($type == "signup") {
             // get entropy from signups redis pool
             exec("redis-cli -h nashi.fp2.dev lpop sls_entropy_silos_matches | sed 's/\"//g'", $cmd_output, $res);  
+        } else {
+            exec("protected/modules/souls/meterfeeder/meterfeeder " . $med_serials[rand(0, count(array($med_serials)) - 1)] . " 256", $cmd_output, $res);
         }
-        //exec("protected/modules/souls/meterfeeder/meterfeeder " . $med_serials[rand(0, count(array($med_serials)) - 1)] . " 256", $cmd_output, $res);
         
         if ($res == 0) {
             $random_walk_results = random_walk($cmd_output[0]);
