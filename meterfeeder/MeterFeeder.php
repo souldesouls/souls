@@ -135,11 +135,11 @@ if (!function_exists('meterfeeder')) {
 
     // Insert random users with random names with random intents into redis
     // $redis = new Redis(); 
-    // $redis->connect('127.0.0.1', 6379);
+    // $redis->connect('nashi.fp2.dev', 6379);
     // for ($i = 0; $i < 1000; $i++) {
     //     echo $i."\n";
     //     //$redis->set(generate_random_username(), implode(",", meterfeeder_get_intent())); 
-    //     $json = '{"username":"'.generate_random_username().'", "entropy":['.implode(",", meterfeeder_get_intent()).']}';   
+    //     $json = '{"username":"'.generate_random_username().'", "entropy":['.implode(",", meterfeeder_get_intent()).']}';
     //     // echo $json."\n"; 
     //     $redis->rpush("baselines", $json);
     // }
