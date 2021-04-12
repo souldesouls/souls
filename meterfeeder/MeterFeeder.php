@@ -83,7 +83,7 @@ if (!function_exists('meterfeeder')) {
     function find_closest_intent($your_intent) {
         // Get random intent and match
         $redis = new Redis(); 
-        $redis->connect('127.0.0.1', 6379);
+        $redis->connect('nashi.fp2.dev', 6379);
         $baselines = $redis->lrange("sls_baselines", 0, -1);
         $best_match = "";
         $last_match_score = -1;
