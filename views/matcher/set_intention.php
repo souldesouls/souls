@@ -5,6 +5,13 @@ use humhub\widgets\Button;
 use yii\helpers\Url;
 
 ?>
+<script>
+    var sendEntropyFromYourSoul = function(hex) {
+        //window.location.href = "<?php echo Url::to(['/souls/matcher/find-and-match']); ?>;
+        //window.location.href = '/index.php?r=souls%2Fmatcher%2Ffind-and-match&username=<?php echo Yii::$app->user->getIdentity()->username;?>';
+        window.location.href = '/index.php?r=souls%2Fmatcher%2Ffind-and-match';
+    }
+</script>
 
 <i class="fa fa-search"></i>
 <?php \humhub\widgets\ModalDialog::begin([
@@ -27,9 +34,23 @@ use yii\helpers\Url;
 
         <center>
             <?php $url = Url::to(['/souls/matcher/find-and-match']); ?>
-            <a href="<?= $url; ?>" class="btn btn-primary" data-target="#globalModal" data-ui-loader>
-                <i class="fa fa-search"></i> <?= Yii::t('SoulsModule.views.matcher', 'FIND A MATCH!'); ?>
-            </a>
+            <div id="findMatch_withCamRNG" style="display: none">
+                <a href="" class="btn btn-primary" data-target="#globalModal" data-ui-loader onclick="flutterChannel_loadCamRNG.postMessage('null');">
+                    <i class="fa fa-search"></i> <?= Yii::t('SoulsModule.views.matcher', 'FIND A MATCH!'); ?>
+                </a>
+            </div>
+            <div id="findMatch_withoutCamRNG" style="display: none">
+                <a href="<?= $url; ?>" class="btn btn-primary" data-target="#globalModal" data-ui-loader>
+                    <i class="fa fa-search"></i> <?= Yii::t('SoulsModule.views.matcher', 'FIND A MATCH!'); ?>
+                </a>
+            </div>
+            <script>
+                if (typeof(flutterChannel_loadCamRNG) != "undefined") {
+                    document.getElementById('findMatch_withCamRNG').style.display = "block";
+                } else {
+                    document.getElementById('findMatch_withoutCamRNG').style.display = "block"
+                }
+            </script>
         </center>
 
     </div>
