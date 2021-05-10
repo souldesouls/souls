@@ -124,6 +124,7 @@ include("protected/modules/souls/meterfeeder/MeterFeeder.php");
 
         <center>
             <?= ModalButton::submitModal("/index.php?r=mail%2Fmail%2Fcreate", Yii::t('SoulsModule.views.matcher', 'START CHATTING'))?>
+            <?= ModalButton::cancel(Yii::t('base', 'CLOSE')) ?>
         </center>
 
         <?php ActiveForm::end(); ?>
