@@ -7,9 +7,7 @@ use yii\helpers\Url;
 ?>
 <script>
     var sendEntropyFromYourSoul = function(hex) {
-        //window.location.href = "<?php echo Url::to(['/souls/matcher/find-and-match']); ?>;
-        //window.location.href = '/index.php?r=souls%2Fmatcher%2Ffind-and-match&username=<?php echo Yii::$app->user->getIdentity()->username;?>';
-        window.location.href = '/index.php?r=souls%2Fmatcher%2Ffind-and-match';
+        window.location.href = '/index.php?r=souls%2Fmatcher%2Ffind-and-match&entropy=' + hex;
     }
 </script>
 

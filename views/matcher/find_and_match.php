@@ -20,8 +20,16 @@ include("protected/modules/souls/meterfeeder/MeterFeeder.php");
 
     <div class="modal-body">
 
-        <?php 
-        $you = meterfeeder_get_intent("match");
+        <?php
+        $you = "";
+        if (isset($_GET['entropy'])) {
+            // use entropy from CamRNG
+            $you = $_GET['entropy'];
+            // $you = explode(",", json_decode($baselines[$i], true);
+        } else {
+            $you = meterfeeder_get_intent("match");
+        }
+
         $other = find_closest_intent($you);
         $matchUsername = $other[0]['username'];
         $matchUserGuid = User::findOne(['username' => $matchUsername])->guid;
