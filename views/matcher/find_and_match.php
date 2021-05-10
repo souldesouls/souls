@@ -24,8 +24,7 @@ include("protected/modules/souls/meterfeeder/MeterFeeder.php");
         $you = "";
         if (isset($_GET['entropy'])) {
             // use entropy from CamRNG
-            $you = $_GET['entropy'];
-            // $you = explode(",", json_decode($baselines[$i], true);
+            $you = random_walk($_GET['entropy']);
         } else {
             $you = meterfeeder_get_intent("match");
         }
