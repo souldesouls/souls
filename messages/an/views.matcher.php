@@ -9,6 +9,7 @@ return [
     'Give some thought to that reason, and try and imagine what kind of person they may be.' => '',
     'Hello, nice to meet you!' => '',
     'MATCH RESULTS' => '',
+    'MEASURE YOUR INTENT!' => '',
     'Or just start chatting!' => '',
     'SET YOUR INTENT' => '',
     'SOULS MATCHER' => '',

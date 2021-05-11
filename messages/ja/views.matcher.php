@@ -18,4 +18,5 @@ return [
     'The lines show your measured intention alongside the closest matching member. Matches range from -100% to 100% and are based on how similar both of your measurements are.' => '上記の線は、測られたあなたと数値が一番近いメンバーの測定結果を表示しています。マッチング結果のパーセントの幅は、-100%〜100%で、二人の線がどれだけ似てるかに基づく数字です。',
     'What\'s the reason you are looking for someone? (Anything goes here:)' => 'どうしてお探しですか？',
     'You two have a {percent}% match. Happy chatting!' => 'あなた二人は{percent}%マッチングされました。チャットをしてみてください♪',
+    'MEASURE YOUR INTENT!' => '意志の想いを測る！',
 ];
