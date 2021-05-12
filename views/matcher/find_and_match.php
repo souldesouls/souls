@@ -31,7 +31,7 @@ include("protected/modules/souls/meterfeeder/MeterFeeder.php");
 
         $other = find_closest_intent($you);
         $matchUsername = $other[0]['username'];
-        $matchUserGuid = User::findOne(['username' => "DisorderlyBookshop"])->guid;
+        $matchUserGuid = User::findOne(['username' => $matchUsername])->guid;
         $matchp = $other[1];
         ?>
 
