@@ -31,7 +31,7 @@ include("protected/modules/souls/meterfeeder/MeterFeeder.php");
 
         $other = find_closest_intent($you);
         $matchUsername = $other[0]['username'];
-        $matchUserGuid = User::findOne(['username' => $matchUsername])->guid;
+        $matchUserGuid = User::findOne(['username' => "DisorderlyBookshop"])->guid;
         $matchp = $other[1];
         ?>
 
@@ -88,6 +88,7 @@ include("protected/modules/souls/meterfeeder/MeterFeeder.php");
                             ]
                         });
                         chart.render();
+                        $('.canvasjs-chart-container').append('<img src="/static/img/whiteness.png" style="position:absolute;top:180px;right:0;">');
                     });
                 </script>
 
